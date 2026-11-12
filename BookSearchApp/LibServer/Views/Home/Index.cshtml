@@ -1,0 +1,48 @@
+@model List<string>
+@{
+    ViewBag.Title = "Поиск книг";
+}
+
+<h1>Поиск книг</h1>
+
+<form method="post" asp-action="Books" asp-controller="Home">
+    <table>
+        <tr>
+            <td><label>Название</label></td>
+            <td><input type="text" name="Title" /></td>
+        </tr>
+        <tr>
+            <td><label>Автор</label></td>
+            <td><input type="text" name="Author" /></td>
+        </tr>
+        <tr>
+            <td><label>Издательство</label></td>
+            <td><input type="text" name="Publisher" /></td>
+        </tr>
+        <tr>
+            <td><label>Жанр</label></td>
+            <td>
+                <input list="genres" name="Genre"/>
+                <datalist id="genres">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </datalist>
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input id="excelent" type="radio" name="Grade" value="excelent" />
+        <label for="excelent">Отлично</label>
+        <input id="good" type="radio" name="Grade" value="good" />
+        <label for="good">Хорошо</label>
+        <input id="neutral" type="radio" name="Grade" value="neutral" />
+        <label for="neutral">Нормально</label>
+        <input id="bad" type="radio" name="Grade" value="bad" />
+        <label for="bad">Плохо</label>
+        <input id="worst" type="radio" name="Grade" value="worst" />
+        <label for="worst">Отвратительно</label>
+    </p>
+    <input type="submit" value="Искать" />
+</form>
